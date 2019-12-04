@@ -122,9 +122,17 @@ class TaskController extends Controller
     public function actionUpdateColumn($column_id, $ids)
     {
         $ids = explode(',', $ids);
-        
+
         try {
-            Task::updateAll(['column_id' => $column_id, 'column_changed_at' => time()], 'id IN (' . $ids . ')');
+            for ($i = 0; $i < sizeof($ids); $i++) {
+                $task = $this->findModel($ids[$i]);
+    
+                $task->column_id = $column_id;
+                $task->column_changed_at = time();
+                $task->position = $i;
+                $task->update();
+            }
+            //Task::updateAll(['column_id' => $column_id, 'column_changed_at' => time()], 'id IN (' . $ids . ')');
         } catch (\Throwable $e) {
             throw $e;
         }
