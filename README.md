@@ -18,5 +18,5 @@ composer install
 ./yii migrate
 ```
 
-Autor: `Niger Andrey Poot May`
-Website: andreycv.epizy.com
+- Autor: `Niger Andrey Poot May`
+- Website: andreycv.epizy.com
